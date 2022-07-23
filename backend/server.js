@@ -4,7 +4,7 @@ const express = require('express')
 const mongoose = require('mongoose')
 // const fundingRequestRoutes = require('./routes/fundingRequests')
 const userRoutes = require('./routes/users')
-const auth = require('./middleware/auth')
+
 // express app
 const app = express()
 
@@ -15,11 +15,9 @@ app.use((req, res, next) => {
   console.log(req.path, req.method)
   next()
 })
-app.get('/api/deneme', auth, (req, res) => {
-  return res.status(200).json({ msg: 'nörs' })
-})
+
 // routes
-// app.use('/api/fundingRequests', fundingRequestRoutes)
+app.use('/api/fundingRequests', fundingRequestRoutes)
 app.use('/api/users', userRoutes)
 
 console.log('here')
